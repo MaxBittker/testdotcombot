@@ -1,3 +1,6 @@
+var Raven = require('raven');
+Raven.config('https://de8033ae4fdb4f0097aadb579fb2dbaf:e84ca576414a416c890cf59fd1938ff1@sentry.io/275023').install();
+
 var Twit = require("twit");
 var fs = require("fs");
 let dat = JSON.parse(fs.readFileSync("out.json"));
