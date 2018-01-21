@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var Raven = require('raven');
 Raven.config('https://de8033ae4fdb4f0097aadb579fb2dbaf:e84ca576414a416c890cf59fd1938ff1@sentry.io/275023').install();
 

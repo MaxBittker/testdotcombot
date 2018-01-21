@@ -1,10 +1,8 @@
 const request = require("request-promise");
 const cheerio = require("cheerio");
 const fs = require("fs");
+let db = JSON.parse(fs.readFileSync("out.json"));
 
-function neuterUrl(url) {
-  return url.replace(".", "․");
-}
 function saveFile(data) {
   let d = JSON.stringify(data);
   fs.writeFileSync("out.json", d);
@@ -32,11 +30,11 @@ let outstanding = 0;
 
 let c = "";
 
-let db = {};
+//  db = {};
 // PriceAsc
 async function scrapePage(offset) {
   let data = await fetchData(
-    `https://www.hugedomains.com/domain_search.cfm?dot=all&anchor=all&highlightbg=1&maxrows=100&catsearch=0&sort=PriceDesc&oc=0&start=${offset}`
+    `https://www.hugedomains.com/domain_search.cfm?dot=all&anchor=all&highlightbg=1&maxrows=100&catsearch=0&sort=PriceAsc&oc=0&start=${offset}`
   );
   const $ = cheerio.load(data);
   // c = $
