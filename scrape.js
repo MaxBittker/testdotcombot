@@ -34,8 +34,9 @@ let c = "";
 // PriceAsc
 async function scrapePage(offset) {
   let data = await fetchData(
-    `https://www.hugedomains.com/cat/arts/?start=${offset}&domain_name=&catSearch=22&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
+    `https://www.hugedomains.com/cat/special-categories/?start=${offset}&domain_name=&catSearch=1&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
 );
+// `https://www.hugedomains.com/cat/arts/?start=${offset}&domain_name=&catSearch=22&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
 // `https://www.hugedomains.com/domain_search.cfm?dot=all&anchor=all&highlightbg=1&maxrows=100&catsearch=0&sort=PriceAsc&oc=0&start=${offset}`
 
   

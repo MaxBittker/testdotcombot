@@ -40,7 +40,7 @@ let status = formatTweet(key);
 console.log(status);
 
 T.post("statuses/update", { status }, function(err, data, response) {
-  console.log(err, data);
+  console.log(err, response);
 });
 
 seen[key] = true;
