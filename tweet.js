@@ -4,14 +4,14 @@ Raven.config('https://de8033ae4fdb4f0097aadb579fb2dbaf:e84ca576414a416c890cf59fd
 
 var Twit = require("twit");
 var fs = require("fs");
-let dat = JSON.parse(fs.readFileSync("out.json"));
-let seen = JSON.parse(fs.readFileSync("seen.json"));
+let dat = JSON.parse(fs.readFileSync(process.argv[1]+"/out.json"));
+let seen = JSON.parse(fs.readFileSync(process.argv[1]+"/seen.json"));
 
 let keys = Object.keys(dat).filter(key=>seen[key]===undefined);
 
 function saveFile(data) {
   let d = JSON.stringify(data);
-  fs.writeFileSync("seen.json", d);
+  fs.writeFileSync(process.argv[1]+"/seen.json", d);
 }
 
 var T = new Twit({
