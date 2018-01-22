@@ -1,29 +1,23 @@
 #!/usr/bin/env node
-var Raven = require('raven');
-Raven.config('https://de8033ae4fdb4f0097aadb579fb2dbaf:e84ca576414a416c890cf59fd1938ff1@sentry.io/275023').install();
+let Raven = require("raven");
+Raven.config(
+  "https://de8033ae4fdb4f0097aadb579fb2dbaf:e84ca576414a416c890cf59fd1938ff1@sentry.io/275023"
+).install();
 
-var Twit = require("twit");
-var fs = require("fs");
-let path = p=> require('path').resolve(__dirname, p);
-
+let fs = require("fs");
+let path = p => require("path").resolve(__dirname, p);
+let { T } = require("./creds");
+let _ = require("lodash");
 
 let dat = JSON.parse(fs.readFileSync(path("out.json")));
 let seen = JSON.parse(fs.readFileSync(path("seen.json")));
 
-let keys = Object.keys(dat).filter(key=>seen[key]===undefined);
+let keys = Object.keys(dat).filter(key => seen[key] === undefined);
 
 function saveFile(data) {
   let d = JSON.stringify(data);
   fs.writeFileSync(path("seen.json"), d);
 }
-
-var T = new Twit({
-  consumer_key: "...",
-  consumer_secret: "...",
-  access_token: "...",
-  access_token_secret: "...",
-  timeout_ms: 60 * 1000 // optional HTTP request timeout to apply to all requests.
-});
 
 function neuterUrl(url) {
   return url.replace(".", "․");
@@ -34,7 +28,8 @@ function formatTweet(key) {
   return `${neuterUrl(url)}   \n\n ${price}`;
 }
 
-// console.log(seen.length + "/" + keys.length);
+keys = _.shuffle(keys);
+
 let key = keys.pop();
 let status = formatTweet(key);
 console.log(status);

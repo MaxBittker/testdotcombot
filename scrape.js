@@ -27,29 +27,24 @@ async function fetchData(url, json = false) {
 const concurrency = 1;
 let outstanding = 0;
 
-
-let c = "";
-
-//  db = {};
-// PriceAsc
-
 async function scrapePage(offset) {
   let data = await fetchData(
-    `https://www.hugedomains.com/cat/recreation/humor/?start=${offset}&domain_name=&catSearch=262&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
+    `https://www.hugedomains.com/cat/recreation/?start=${offset}&domain_name=&catSearch=258&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
   );
+  // `https://www.hugedomains.com/cat/recreation/humor/?start=${offset}&domain_name=&catSearch=262&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
   // `https://www.hugedomains.com/domain_search.cfm?start=${offset}&domain_name=&catSearch=96&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
-// `https://www.hugedomains.com/cat/arts/?start=${offset}&domain_name=&catSearch=22&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
-// `https://www.hugedomains.com/domain_search.cfm?dot=all&anchor=all&highlightbg=1&maxrows=100&catsearch=0&sort=PriceAsc&oc=0&start=${offset}`
+  // `https://www.hugedomains.com/cat/arts/?start=${offset}&domain_name=&catSearch=22&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
+  // `https://www.hugedomains.com/domain_search.cfm?dot=all&anchor=all&highlightbg=1&maxrows=100&catsearch=0&sort=PriceAsc&oc=0&start=${offset}`
 
-  
   const $ = cheerio.load(data);
-  // c = $
   let rows = $("table").text().split("Buy Now").slice(2);
   let vs = rows.map(r => r.trim().split(/\n/).filter(x => x.trim()).slice(1));
-  console.log(vs,offset)
+
+  console.log(vs, offset);
+
   vs.map(parseRow).forEach(storeRow);
   storeRow(db);
-  if (offset < 9899) {
+  if (offset < 9999) {
     scrapePage(offset + 100);
   } else {
     saveFile(db);
