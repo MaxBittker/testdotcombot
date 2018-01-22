@@ -32,10 +32,12 @@ let c = "";
 
 //  db = {};
 // PriceAsc
+
 async function scrapePage(offset) {
   let data = await fetchData(
-    `https://www.hugedomains.com/domain_search.cfm?start=${offset}&domain_name=&catSearch=96&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
-);
+    `https://www.hugedomains.com/cat/recreation/humor/?start=${offset}&domain_name=&catSearch=262&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
+  );
+  // `https://www.hugedomains.com/domain_search.cfm?start=${offset}&domain_name=&catSearch=96&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
 // `https://www.hugedomains.com/cat/arts/?start=${offset}&domain_name=&catSearch=22&dot=all&anchor=all&highlightbg=1&length_start=&length_end=&price_from=&price_to=&maxrows=100&sort=`
 // `https://www.hugedomains.com/domain_search.cfm?dot=all&anchor=all&highlightbg=1&maxrows=100&catsearch=0&sort=PriceAsc&oc=0&start=${offset}`
 
