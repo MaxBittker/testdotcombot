@@ -34,13 +34,13 @@ function formatTweet(key) {
   return `${neuterUrl(url)}   \n\n ${price}`;
 }
 
-console.log(seen.length + "/" + keys.length);
+// console.log(seen.length + "/" + keys.length);
 let key = keys.pop();
 let status = formatTweet(key);
 console.log(status);
 
 T.post("statuses/update", { status }, function(err, data, response) {
-  console.log(err, response);
+  // console.log(err, response);
 });
 
 seen[key] = true;

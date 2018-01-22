@@ -43,32 +43,28 @@ async function scrapePage(offset) {
   const $ = cheerio.load(data);
   // c = $
   let rows = $("table").text().split("Buy Now").slice(2);
-  //console.log(data)
   let vs = rows.map(r => r.trim().split(/\n/).filter(x => x.trim()).slice(1));
   console.log(vs,offset)
   vs.map(parseRow).forEach(storeRow);
   storeRow(db);
   if (offset < 9899) {
-//    console.log(Object.keys(db).length);
     scrapePage(offset + 100);
   } else {
     saveFile(db);
   }
 }
+
 function parseRow(row) {
   let [url, category, price] = row;
-  //  console.log("parseRow" ,row,url,category,price)
   return { url, category, price };
 }
+
 function storeRow(row) {
   let key = row.url;
-  //console.log(row);
   if (!key) {
     return;
   }
-  //console.log(row);
   db[key] = row;
-  // console.log(db);
 }
 
 scrapePage(0);
